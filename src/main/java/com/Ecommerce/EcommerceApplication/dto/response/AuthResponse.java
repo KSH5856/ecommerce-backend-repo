@@ -3,7 +3,6 @@ package com.Ecommerce.EcommerceApplication.dto.response;
 import lombok.Data;
 
 @Data
-public class SuccessResponse<T> {
-	private T response;
-	private boolean isError;
+public class AuthResponse {
+	private String token;
 }

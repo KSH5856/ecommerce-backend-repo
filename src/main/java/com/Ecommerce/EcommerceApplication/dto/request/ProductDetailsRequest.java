@@ -1,6 +1,6 @@
 package com.Ecommerce.EcommerceApplication.dto.request;
 
-import com.Ecommerce.EcommerceApplication.entity.Category;
+import com.Ecommerce.EcommerceApplication.utils.enums.Category;
 import lombok.Data;
 
 @Data

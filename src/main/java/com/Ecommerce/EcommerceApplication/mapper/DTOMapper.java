@@ -1,12 +1,11 @@
 package com.Ecommerce.EcommerceApplication.mapper;
 
 import com.Ecommerce.EcommerceApplication.dto.request.ProductDetailsRequest;
-import com.Ecommerce.EcommerceApplication.dto.response.ProductDetailsResponse;
-import com.Ecommerce.EcommerceApplication.entity.Category;
 import com.Ecommerce.EcommerceApplication.entity.ProductDetails;
 
 public class DTOMapper {
 	
+	// Converts productDetails Request to entity of productDetails
 	public static ProductDetails BuildProductRequest(ProductDetailsRequest request){
 		ProductDetails newProduct = new ProductDetails();
 		newProduct.setCategory(request.getCategory());
