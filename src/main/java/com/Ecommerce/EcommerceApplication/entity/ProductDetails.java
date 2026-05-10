@@ -1,24 +1,24 @@
 package com.Ecommerce.EcommerceApplication.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Table
 @Entity
 @Data
-public class 	ProductDetails {
+public class ProductDetails {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private long id;
+	@Column(name = "product_id")
+	private long productId;
 	private String title;
 	private String description;
-	private String category;
+	
+	@Enumerated(EnumType.STRING)
+	private Category category;
+	
 	private double price;
-	private int stock;
+	private int stockCount;
 	private String images;
 }
