@@ -1,7 +1,6 @@
 package com.Ecommerce.EcommerceApplication.controller;
 
 import com.Ecommerce.EcommerceApplication.dto.request.LoginRequest;
-import com.Ecommerce.EcommerceApplication.dto.response.AuthResponse;
 import com.Ecommerce.EcommerceApplication.dto.response.SuccessResponse;
 import com.Ecommerce.EcommerceApplication.entity.User;
 import com.Ecommerce.EcommerceApplication.repository.UserRepository;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "*")
 public class AuthController {
 	
 	@Autowired
