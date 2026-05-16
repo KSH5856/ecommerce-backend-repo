@@ -1,6 +1,6 @@
 package com.Ecommerce.EcommerceApplication.dto.response;
 
-import com.Ecommerce.EcommerceApplication.entity.Category;
+import com.Ecommerce.EcommerceApplication.utils.enums.Category;
 import lombok.Data;
 
 @Data
@@ -11,6 +11,6 @@ public class ProductDetailsResponse {
 	private String description;
 	private Category category;
 	private double price;
-	private int stockCount;
+//	private int stockCount;
 	private String images;
 }

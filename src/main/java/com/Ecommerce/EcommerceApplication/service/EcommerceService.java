@@ -21,11 +21,11 @@ public class EcommerceService {
 	
 	public ResponseEntity<Object> getAllProducts() {
 		List<ProductDetails> productList = productRepo.findAll();
-
-		SuccessResponse response = new SuccessResponse();
+		
+		SuccessResponse<List<ProductDetails>> response = new SuccessResponse<>();
 		response.setError(false);
 		response.setResponse(productList);
-		return new ResponseEntity(response, HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 	

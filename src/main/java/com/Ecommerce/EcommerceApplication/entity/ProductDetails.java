@@ -1,5 +1,6 @@
 package com.Ecommerce.EcommerceApplication.entity;
 
+import com.Ecommerce.EcommerceApplication.utils.enums.Category;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class ProductDetails {
 	private Category category;
 	
 	private double price;
+	
 	private int stockCount;
 	private String images;
 }
