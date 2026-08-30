@@ -20,7 +20,6 @@ public class ProductDetails {
 	private Category category;
 	
 	private double price;
-	
-	private int stockCount;
+	private boolean isLiked;
 	private String images;
 }

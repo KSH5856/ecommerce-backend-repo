@@ -36,13 +36,18 @@ public class EcommerceJwtUtil {
 	}
 	
 	public String extractEmail(String token) {
-		
-		return Jwts.parserBuilder()
-						.setSigningKey(key)
-						.build()
-						.parseClaimsJws(token)
-						.getBody()
-						.getSubject();
+		try{
+			return Jwts.parserBuilder()
+							.setSigningKey(key)
+							.build()
+							.parseClaimsJws(token)
+							.getBody()
+							.getSubject();
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	
 	}
 
 	private Claims getClaims(String token) {

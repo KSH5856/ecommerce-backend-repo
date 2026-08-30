@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,23 +50,28 @@ public class EcommerceSecurityConfig {
 	}
 	
 	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(service);
+		provider.setPasswordEncoder(passwordEncoder());
+		return provider;
+	}
+	
+	
+	@Bean
 	public SecurityFilterChain securityFilterChain(
 					org.springframework.security.config.annotation.web.builders.HttpSecurity http)
 					throws Exception {
 		
 		http
 						.csrf(csrf -> csrf.disable())
-						.sessionManagement(session ->
-										session.sessionCreationPolicy(
-														SessionCreationPolicy.STATELESS
-										))
+						.authenticationProvider(authenticationProvider())
+						.httpBasic(secure -> secure.disable())
+						.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 						.authorizeHttpRequests(auth -> auth
-										.requestMatchers(
-														"/auth/**"
-										).permitAll()
+										.requestMatchers("/auth/**").permitAll()
+										.requestMatchers("/product/**").hasAnyRole("ADMIN","USER")
 										.anyRequest().authenticated()
-						)
-						.httpBasic(Customizer.withDefaults());
+						);
 		
 		http.addFilterBefore(
 						jwtFilter(),
