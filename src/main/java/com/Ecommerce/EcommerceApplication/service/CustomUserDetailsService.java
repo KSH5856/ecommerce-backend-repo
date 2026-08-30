@@ -17,14 +17,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email)
 					throws UsernameNotFoundException {
+		try{
+			var user = repository.findByEmail(email).orElseThrow(() ->
+							new UsernameNotFoundException("User not found"));
+
+			return new User(
+							user.getEmail(),
+							user.getPassword(),
+							List.of(new SimpleGrantedAuthority("ROLE_"+user.getRole().name()))
+			);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		
-		var user = repository.findByEmail(email).orElseThrow(() ->
-										new UsernameNotFoundException("User not found"));
-		
-		return new User(
-						user.getEmail(),
-						user.getPassword(),
-						List.of(new SimpleGrantedAuthority(user.getRole().name()))
-		);
 	}
 }

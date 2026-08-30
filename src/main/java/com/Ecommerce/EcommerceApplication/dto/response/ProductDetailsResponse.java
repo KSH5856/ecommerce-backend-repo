@@ -10,7 +10,7 @@ public class ProductDetailsResponse {
 	private String title;
 	private String description;
 	private Category category;
+	private boolean isLiked = false;
 	private double price;
-//	private int stockCount;
 	private String images;
 }
